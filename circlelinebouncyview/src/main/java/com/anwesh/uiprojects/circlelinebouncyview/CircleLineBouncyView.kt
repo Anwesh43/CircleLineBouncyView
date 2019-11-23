@@ -181,4 +181,26 @@ class CircleLineBouncyView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : CircleLineBouncyView) {
+
+        private val clb : CircleLineBouncy = CircleLineBouncy(0)
+        private val animator : Animator = Animator(view)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            clb.draw(canvas, paint)
+            animator.animate {
+                clb.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            clb.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
