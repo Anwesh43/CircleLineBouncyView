@@ -204,4 +204,13 @@ class CircleLineBouncyView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : CircleLineBouncyView {
+            val view : CircleLineBouncyView = CircleLineBouncyView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
